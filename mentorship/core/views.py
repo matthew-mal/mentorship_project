@@ -62,7 +62,7 @@ class UserDetailView(generics.RetrieveUpdateAPIView):
         return {"request": self.request}
 
     def update(self, request, *args, **kwargs):
-        if str(request.user.id) != self.kwargs["pk"]:
+        if request.user.id != self.kwargs["pk"]:
             logger.warning(
                 f"Attempt to update someone else's profile: user={request.user.id}, pk={self.kwargs['pk']}"
             )
@@ -78,13 +78,12 @@ class LogoutView(APIView):
 
     def post(self, request):
         try:
-            refresh_token = request.data["refresh"]
-            token = RefreshToken(refresh_token)
-            token.blacklist()
-            return Response(status=status.HTTP_205_RESET_CONTENT)
+            return Response(
+                {"message": "Successfully logged out"},
+                status=status.HTTP_205_RESET_CONTENT,
+            )
         except Exception as e:
             logger.error(f"Logout failed: {str(e)}")
             return Response(
-                {"error": "Invalid refresh token"},
-                status=status.HTTP_400_BAD_REQUEST
+                {"error": "Logout failed"}, status=status.HTTP_400_BAD_REQUEST
             )

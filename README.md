@@ -57,13 +57,13 @@ python manage.py runserver
   ```json
   {
       "username": "user1",
-      "password": "password123"
+      "password": "pass123"
   }
   ```
-     ```bash
+ ```bash
    curl -X POST http://127.0.0.1:8000/api/login/ \
    -H "Content-Type: application/json" \
-   -d '{"username": "user1", "password": "password123"}'
+   -d '{"username": "user1", "password": "pass123"}'
    ```
 - **Ответ**:
   - `200 OK`:

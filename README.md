@@ -37,7 +37,7 @@ python manage.py runserver
   ```json
   {
       "username": "user1",
-      "password": "password123",
+      "password": "pass123",
       "phone": "123456789",
       "email": "user@example.com"
   }
